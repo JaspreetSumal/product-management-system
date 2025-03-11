@@ -39,6 +39,13 @@ app.MapGet("/home", () =>
 })
 .WithName("GetHome");
 
+app.MapGet("/*{price}/{tax}" ,(double price, double tax) =>
+{
+    var final = price + (price * tax);
+    return new { price, tax, final };
+})
+.WithName("GetTax");
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
